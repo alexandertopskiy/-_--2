@@ -1,6 +1,12 @@
 body {
 	background: #f9e933; 
+	font-family: 'Droid sans';
 }
+
+h1, h2, h3, h4 {
+	font-family: Ubuntu;
+}
+
 header, main, footer { 
 	min width: 855px;
 }
