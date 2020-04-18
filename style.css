@@ -56,6 +56,16 @@ main .image {
 	width: 285px;
 }
 
+main .faq {
+	float: left;
+	width: 855px;
+}
+
+main .faq p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 main h2 {
 	font-size: 120%;
 	margin-top: 10px;
