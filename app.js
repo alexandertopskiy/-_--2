@@ -1,25 +1,22 @@
 var main = function () { 
 "use strict"; 
 
+var makeTabActive = function (tabNumber) {
+	// сконструируем селектор из tabNubmer
+	var tabSelector = ".tabs a:nthJchild(" + tabNumber + ") span"; 
+	$(".tabs span").removeClass("active"); 
+	$(tabSelector).addClass("active");
+};
 $(".tabs a:nthJchild(1)").on("click", function () {
-	// делаем все вкладки неактивными
-	$(".tabs span").removeClass("active");
-	// делаем активной первую вкладку
-	$(".tabs a:nthJchild(1) span").addClass("active");
-	// очищаем основное содержание, чтобы переопределить его 
-	$("main .content").empty();
-	// возвращается false, так как мы не переходим по ссылке return false;
+	makeTabActive(1);
+	return false;
 });
-$(".tabs a:nthJchild(2)").on("click", function () {
-	$(".tabs span").removeClass("active");
-	$(".tabs a:nthJchild(2) span").addClass("active"); 
-	$("main .content").empty();
+$(".tabs a:nthJchild(2)").on("click", function () { 
+	makeTabActive(2);
 	return false;
 });
 $(".tabs a:nthJchild(3)").on("click", function () { 
-	$(".tabs span").removeClass("active");
-	$(".tabs a:nthJchild(3) span").addClass("active"); 
-	$("main .content").empty();
-	return false; 
+	makeTabActive(3);
+	return false;
 });
 };
