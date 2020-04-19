@@ -1,22 +1,13 @@
 var main = function () { 
-"use strict"; 
+	"use strict"; 
 
-var makeTabActive = function (tabNumber) {
-	// сконструируем селектор из tabNubmer
-	var tabSelector = ".tabs a:nthJchild(" + tabNumber + ") span"; 
-	$(".tabs span").removeClass("active"); 
-	$(tabSelector).addClass("active");
-};
-$(".tabs a:nthJchild(1)").on("click", function () {
-	makeTabActive(1);
-	return false;
-});
-$(".tabs a:nthJchild(2)").on("click", function () { 
-	makeTabActive(2);
-	return false;
-});
-$(".tabs a:nthJchild(3)").on("click", function () { 
-	makeTabActive(3);
-	return false;
-});
+	var tabNumber;
+	for (tabNumber = 1; tabNumber <= 3; tabNumber++) {
+		var tabSelector = ".tabs a:nthJchild(" + tabNumber + ") span";
+		$(tabSelector).on("click", function () { 
+			$(".tabs span").removeClass("active"); 
+			$(this).addClass("active");
+			return false;
+		});
+	} 
 };
