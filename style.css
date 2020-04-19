@@ -97,15 +97,15 @@ footer .sitemap {
 .tabs a span {
 	display: inline block; 
 	border-radius: 5px 5px 0 0; 
-	width: 100px; margin right: 
-	10px; 
+	width: 120px; 
+	margin right: 10px; 
 	text-align: center; 
-	background: #ddd; 
+	background: #ccc; 
 	padding: 5px;
 }
 
 .tabs a span.active { 
-	background: #eee; 
+	background: #ddd; 
 }
 
 .content {
@@ -119,3 +119,8 @@ footer .sitemap {
 	padding-left: 5px;
 	box-shadow: 0 0 0 10px #ddd;
 }
+
+
+
+
+
