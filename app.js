@@ -32,6 +32,29 @@ var main = function (toDoObjects) {
 			else if ($element.parent().is(":nth-child(3)")) { 
 				// ЭТО КОД ДЛЯ ВКЛАДКИ ТЕГИ 
 				console.log("Щелчок на вкладке Теги");
+				var organizedByTag = [
+					{
+					"name": "покупки",
+					"toDos": ["Купить продукты "]
+					},
+					{
+					"name": "рутина",
+					"toDos": ["Купить продукты", "Вывести Грейси на прогулку в парк "] 
+					},
+					/* и т. д. */
+				];
+				organizedByTag.forEach(function (tag) { 
+					var $tagName = $("<h3>").text(tag.name), 
+					$content = $("<ul>"); 
+					tag.toDos.forEach(function (description) { 
+						var $li = $("<li>").text(description); 
+						$content.append($li);
+					});
+					$("main .content").append($tagName); 
+					$("main .content").append($content);
+				});
+
+
 			} else if ($element.parent().is(":nth-child(4)")) { 
 				var $input = $("<input>"),
 				$button = $("<button>").text("+"); 
