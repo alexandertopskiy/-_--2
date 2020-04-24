@@ -30,20 +30,15 @@ var main = function (toDoObjects) {
 				});
 			} 
 			else if ($element.parent().is(":nth-child(3)")) { 
-				$(".content").append(
-					'<input type="text" class="inp">'+
-					'<button class="btn">Добавить</button>'
-				);
-				var newToDo;
-				$('.btn').on('click',function(){
-					newToDo= $('.inp').val();
-					if (newToDo!='') {
-						toDos.push( newToDo);
-						alert('Новое задание "'+newToDo+'" успешно добавлено!');
-						$('.inp').val("");
-					}
-				})
-			
+				// ЭТО КОД ДЛЯ ВКЛАДКИ ТЕГИ 
+				console.log("Щелчок на вкладке Теги");
+			} else if ($element.parent().is(":nth-child(4)")) { 
+				var $input = $("<input>"),
+				$button = $("<button>").text("+"); 
+				$button.on("click", function () { 
+					toDos.push($input.val()); $input.val("");
+				});
+				$("main .content").append($input).append($button); 
 			}
 			return false;
 		})
