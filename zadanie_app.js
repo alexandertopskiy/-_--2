@@ -1,40 +1,43 @@
-var main = function () {
+var slideshow = function(tag) {
+	// console.log(tag);
 	var url = "http://api.flickr.com/services/feeds/photos_public.gne?" + 
-		"tags=meme&format=json&jsoncallback=?";
-	$.getJSON(url, function (flickrResponse) {
-		//пока мы просто выво3им ответ в консоль 
-		flickrResponse.items.forEach(function (photo) {
-			// соз3аем новый элемент jQuery 3ля помещения 
-			//в него изображения 
-			var $img = $("<img>").hide();
-			// помещаем в атрибут URL,
-			// хранящийся в ответе Flickr
-			$img.attr("src", photo.media.m);
-			// прикрепляем тег img к элементу
-			// main.photos
-			$("main .photos").append($img);
-			$img.fadeIn();
-			// console.log(photo.media.m);
-		});
-	});
-
-	var messages = ["первое сообщение", "второе сообщение", "третье", "четвертое"];
-
-	var displayMessage = function (photo) {
-		// создаем и скрываем элемент DOM
-		
-		var $img = $("<img>").hide();
-		$img.attr("src", photo.media.m);
-		$("main .photos").append($img);
-		$img.fadeIn();
-		// console.log(photo.media.m);
-		
-		setTimeout(function () {
-			// через 3 секунды вызываем displayMessage снова со следующим индексом 
-			messageIndex = messageIndex + 1;
-			displayMessage(messageIndex);
-		}, 3000);
+			"tags=" + tag + "&format=json&jsoncallback=?";
+	var displayMessage = function (messageIndex) {
+		if (tag !== "")  {
+			$.getJSON(url, function (flickrResponse) {
+				console.log(messageIndex);
+				var $img = $("<img>").attr("src", flickrResponse.items[messageIndex].media.m).hide();
+				$("main .photos").empty();
+				$("main .photos").append($img);
+				$img.fadeIn();
+				setTimeout(function () {
+					messageIndex = messageIndex + 1;
+					displayMessage(messageIndex);
+				}, 3000);
+				if (messageIndex === 2) {
+						messageIndex = -1;
+				}
+			});
+		}
 	};
 	displayMessage(0);
 }
+
+var main = function () {
+	"use strict"; 
+	var tag = "";
+	var $inputLabel = $("<p>").text("Введите тег для темы слайд-шоу: "),
+		$input = $("<input>").addClass("tag"), 				
+		$button = $("<button>").text("Поиск");
+	$button.on("click", function () {
+		tag = $input.val();
+		// console.log(tag);
+		$input.val("");
+		if (tag !== "") {
+			slideshow(tag);
+		}
+	});
+	$("main .content").append($inputLabel).append($input).append($button); 
+	// console.log(tag);
+};
 $(document).ready(main);
